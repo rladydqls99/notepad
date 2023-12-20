@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { atoms } from "../atom";
 import styled from "styled-components";
+import Button from "./Button";
 
 function Main() {
   const [atom, setAtom] = useRecoilState(atoms);
@@ -48,7 +49,7 @@ function Main() {
         <TextBox>
           <h1>Memo</h1>
           <textarea onChange={onChangeTextArea} value={displayState} />
-          <button onClick={onClickTextArea}>confirm</button>
+          <Button size="m" onClick={onClickTextArea} text="confirm" />
         </TextBox>
       ) : (
         textState &&
@@ -98,7 +99,7 @@ const TextBox = styled.div`
   button {
     background-color: transparent;
     border: 1px solid lightgray;
-    border-radius: 5px;
+    border-radius: 10px;
 
     width: 100px;
     height: 50px;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NoteBooks from "./NoteBooks";
 import CreateModal from "./CreateModal";
+import Button from "./Button";
 
 function SideBar() {
   const AllNote = JSON.parse(localStorage.getItem("AllNote")) || [];
@@ -17,7 +18,7 @@ function SideBar() {
   };
   return (
     <Container>
-      <button onClick={onClickCreateBtn}> Create NoteBook</button>
+      <Button size="l" onClick={onClickCreateBtn} text="Create NoteBook" />
       {AllNote &&
         AllNote.map((notebook, index) => (
           <NoteBooks

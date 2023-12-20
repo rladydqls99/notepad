@@ -2,24 +2,8 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { atoms } from "../atom";
-
-function createNotebook(notebookName) {
-  const allNoteString = localStorage.getItem("AllNote");
-  const allNote = allNoteString ? JSON.parse(allNoteString) : [];
-
-  const updateAllNote = [...allNote, notebookName];
-  localStorage.setItem("AllNote", JSON.stringify(updateAllNote));
-}
-
-function createMemo(memo, notebookName, setAtom) {
-  const notebookString = localStorage.getItem(notebookName);
-  const notebook = notebookString ? JSON.parse(notebookString) : [];
-
-  const updateNotebook = [...notebook, memo];
-
-  localStorage.setItem(notebookName, JSON.stringify(updateNotebook));
-  setAtom({ memo: [notebookName, memo] });
-}
+import { createNotebook, createMemo } from "../utils/Create";
+import Button from "./Button";
 
 function CreateModal({ type, setModalState, notebook }) {
   const [inputState, setInputState] = useState("");
@@ -53,8 +37,8 @@ function CreateModal({ type, setModalState, notebook }) {
               placeholder="Enter noteBook name"
             />
             <ButtonBox>
-              <button onClick={onClickCancle}>Cancle</button>
-              <button onClick={onClickCreate}>Create</button>
+              <Button size={"s"} onClick={onClickCancle} text="Cancle" />
+              <Button size={"s"} onClick={onClickCreate} text="Create" />
             </ButtonBox>
           </>
         ) : (
@@ -65,8 +49,8 @@ function CreateModal({ type, setModalState, notebook }) {
               placeholder="Enter memo"
             />
             <ButtonBox>
-              <button onClick={onClickCancle}>Cancle</button>
-              <button onClick={onClickCreate}>Create</button>
+              <Button size={"s"} onClick={onClickCancle} text="Cancle" />
+              <Button size={"s"} onClick={onClickCreate} text="Create" />
             </ButtonBox>
           </>
         )}
@@ -113,15 +97,22 @@ const Container = styled.div`
   textarea {
     height: 180px;
     font-size: 16px;
-    margin-bottom: auto;
 
+    margin-bottom: auto;
     padding: 5px;
+
+    border-radius: 10px;
+    border: 1px solid lightgray;
   }
   input {
     height: 50px;
     font-size: 20px;
+
     padding: 5px;
     margin-bottom: auto;
+
+    border-radius: 10px;
+    border: 1px solid lightgray;
   }
 `;
 
@@ -132,10 +123,4 @@ const ButtonBox = styled.div`
   gap: 10px;
   height: 30px;
   margin-bottom: 10px;
-
-  button {
-    background-color: transparent;
-    border: 1px solid black;
-    border-radius: 5px;
-  }
 `;
