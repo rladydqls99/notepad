@@ -41,10 +41,17 @@ function Main() {
     setAtom({ memo: [atom.memo[0], displayState] });
   };
 
+  const onClickMemoBox = (memo) => {
+    setDisplayState(memo);
+    setInputState(true);
+    setTextState(false);
+    setAtom({ memo: [atom.notebook, memo] });
+  };
+
   return (
     <Container>
       {firstState ? (
-        <div>환영합니다.</div>
+        <Welcome>Welcome, start your notes.</Welcome>
       ) : inputState ? (
         <TextBox>
           <h1>Memo</h1>
@@ -55,7 +62,9 @@ function Main() {
         textState &&
         (displayState ? (
           displayState.map((memo, index) => (
-            <MemoBox key={index}>{memo}</MemoBox>
+            <MemoBox onClick={() => onClickMemoBox(memo)} key={index}>
+              {memo}
+            </MemoBox>
           ))
         ) : (
           <div>해당 notebook에 메모가 없습니다. 메모를 시작해보세요!</div>
@@ -74,6 +83,10 @@ const Container = styled.div`
   padding: 10px;
 
   display: flex;
+`;
+
+const Welcome = styled.div`
+  margin: auto;
 `;
 
 const TextBox = styled.div`
@@ -95,23 +108,11 @@ const TextBox = styled.div`
     border: 1px solid lightgray;
     font-size: 18px;
   }
-
-  button {
-    background-color: transparent;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-
-    width: 100px;
-    height: 50px;
-    font-size: 16px;
-
-    margin-left: auto;
-  }
 `;
 
 const MemoBox = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 
   border: 1px solid lightgray;
   border-radius: 5px;
@@ -119,5 +120,4 @@ const MemoBox = styled.div`
   margin-right: 10px;
 
   padding: 20px;
-  text-align: center;
 `;

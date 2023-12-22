@@ -4,15 +4,12 @@ import styled from "styled-components";
 import { atoms } from "../atom";
 import { createNotebook, createMemo } from "../utils/Create";
 import Button from "./Button";
+import useInput from "../hooks/useInput";
 
 function CreateModal({ type, setModalState, notebook }) {
-  const [inputState, setInputState] = useState("");
   const [_, setAtom] = useRecoilState(atoms);
+  const [inputState, onChange] = useInput("");
 
-  const onChange = (e) => {
-    const { value } = e.target;
-    setInputState(value);
-  };
   const onClickCreate = () => {
     if (type === "notebook") {
       createNotebook(inputState);

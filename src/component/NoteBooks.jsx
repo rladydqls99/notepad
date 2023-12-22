@@ -53,20 +53,21 @@ function NoteBooks({ notebook, renderState, setRenderState }) {
           <span onClick={onClickPlusBtn} className="material-symbols-outlined">
             add
           </span>
-          <span onClick={onClickDeleteNote} class="material-symbols-outlined">
+          <span
+            onClick={onClickDeleteNote}
+            className="material-symbols-outlined"
+          >
             delete
           </span>
         </div>
       </Box>
       <MemoList togglestate={toggleState ? 0 : 1} length={memoList.length * 30}>
         {memoList.map((memo, index) => (
-          <div>
-            <li onClick={() => setAtom({ memo: [notebook, memo] })} key={index}>
-              {memo}
-            </li>
+          <div key={index}>
+            <li onClick={() => setAtom({ memo: [notebook, memo] })}>{memo}</li>
             <span
               onClick={() => onClickDeleteMemo(memo)}
-              class="material-symbols-outlined"
+              className="material-symbols-outlined"
             >
               delete
             </span>

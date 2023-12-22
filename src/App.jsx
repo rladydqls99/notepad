@@ -18,7 +18,7 @@ export default App;
 
 const Container = styled.div`
   display: flex;
-  height: 600px;
+  min-height: 600px;
 
   border: 1px solid lightgray;
   border-radius: 10px;

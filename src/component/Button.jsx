@@ -15,6 +15,7 @@ function Button({ size, onClick, text }) {
         width: "100px",
         height: "50px",
         fontSize: "16px",
+        marginLeft: "auto",
       };
       break;
     case "s":
@@ -41,7 +42,8 @@ function Button({ size, onClick, text }) {
 export default Button;
 
 const Btn = styled.button`
-  background-color: transparent;
+  background-color: #0040ff;
+  color: white;
   border: 1px solid lightgray;
   border-radius: 10px;
 `;

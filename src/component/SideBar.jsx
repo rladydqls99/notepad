@@ -31,7 +31,9 @@ function SideBar() {
       {modalState && (
         <CreateModal type={"notebook"} setModalState={setModalState} />
       )}
-      <DeleteAllBtn onClick={deleteAll}>delete All Notebooks</DeleteAllBtn>
+      <DeleteAllBtn size="l" onClick={deleteAll} text="">
+        delete All Notebooks
+      </DeleteAllBtn>
     </Container>
   );
 }
@@ -45,17 +47,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  height: 100%;
+  min-height: 600px;
   gap: 20px;
-
-  button {
-    background-color: transparent;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-
-    height: 50px;
-    font-size: 16px;
-  }
 `;
 
 const DeleteAllBtn = styled.button`
